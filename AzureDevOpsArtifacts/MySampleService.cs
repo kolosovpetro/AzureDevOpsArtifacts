@@ -1,4 +1,4 @@
-﻿namespace DotnetTemplate;
+﻿namespace AzureDevOpsArtifacts;
 
 public static class MySampleService
 {

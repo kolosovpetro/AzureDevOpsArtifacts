@@ -1,7 +1,7 @@
 using FluentAssertions;
 using Xunit;
 
-namespace DotnetTemplate.Tests;
+namespace AzureDevOpsArtifacts.Tests;
 
 public class UnitTest
 {
