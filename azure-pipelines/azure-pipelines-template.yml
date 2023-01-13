@@ -24,23 +24,23 @@ steps:
       packageType: sdk
       version: 6.x
       
-#  - task: NuGetCommand@2
-#    displayName: 'Restore Nuget Packages'
-#    inputs:
-#      command: 'restore'
-#      restoreSolution: '$(solutionProjectPath)'
-#      feedsToUse: 'config'
-#      nugetConfigPath: 'nuget.config'
-#      externalFeedCredentials: 'NUGET_AUTH'
-
-  - task: DotNetCoreCLI@2
-    displayName: 'Dotnet Restore'
+  - task: NuGetCommand@2
+    displayName: 'Restore Nuget Packages'
     inputs:
       command: 'restore'
-      arguments: '--verbosity minimal'
-      feedsToUse: 'select'
-      vstsFeed: '04c81209-5ca9-4784-b02b-bdd6e2024216/d4626246-960c-4423-b417-81d62a12eebc'
-      includeNuGetOrg: false
+      restoreSolution: '$(solutionProjectPath)'
+      feedsToUse: 'config'
+      nugetConfigPath: 'nuget.config'
+      externalFeedCredentials: 'NUGET_AUTH'
+
+#  - task: DotNetCoreCLI@2
+#    displayName: 'Dotnet Restore'
+#    inputs:
+#      command: 'restore'
+#      arguments: '--verbosity minimal'
+#      feedsToUse: 'select'
+#      vstsFeed: '04c81209-5ca9-4784-b02b-bdd6e2024216/d4626246-960c-4423-b417-81d62a12eebc'
+#      includeNuGetOrg: false
 
 #  - task: DotNetCoreCLI@2
 #    displayName: 'Dotnet build $(buildConfiguration)'
