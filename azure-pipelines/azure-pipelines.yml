@@ -2,11 +2,13 @@ trigger:
   branches:
     include:
       - develop
+      - master
 
 pr:
   branches:
     include:
       - develop
+      - master
 
 variables:
   - name: buildPlatform
