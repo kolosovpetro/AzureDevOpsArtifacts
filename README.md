@@ -18,3 +18,8 @@ Create, pack and publish nuget package to azure devops artifacts feed for furthe
 
 - Generate PAT with permissions: `package:read`, `package:write`, `package:manage`
 - Add service connection
+
+## IF YOU HAVE 403 ERROR ON NUGET PUSH (!!!)
+
+- https://stackoverflow.com/a/65753394
+![403 error](./if_you_have_push_403/03.PNG)
