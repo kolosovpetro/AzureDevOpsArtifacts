@@ -14,7 +14,7 @@ variables:
   - name: buildConfiguration
     value: 'Release'
   - name: testProjectPath
-    value: './AzureDevOpsArtifacts.Tests/AzureDevOpsArtifacts.Tests.Tests.csproj'
+    value: './AzureDevOpsArtifacts.Tests/AzureDevOpsArtifacts.Tests.csproj'
   - name: nugetProjectPath
     value: './AzureDevOpsArtifacts/AzureDevOpsArtifacts.csproj'
 
