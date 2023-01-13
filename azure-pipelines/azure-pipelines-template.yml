@@ -4,12 +4,21 @@ steps:
     inputs:
       packageType: sdk
       version: 6.x
-
-  - task: DotNetCoreCLI@2
-    displayName: 'Dotnet Restore'
+      
+  - task: NuGetCommand@2
+    displayName: 'Restore Nuget Packages'
     inputs:
       command: 'restore'
-      arguments: '--verbosity minimal'
+      restoreSolution: '$(solutionProjectPath)'
+      feedsToUse: 'config'
+      nugetConfigPath: 'nuget.config'
+      externalFeedCredentials: 'osds_nuget'
+
+#  - task: DotNetCoreCLI@2
+#    displayName: 'Dotnet Restore'
+#    inputs:
+#      command: 'restore'
+#      arguments: '--verbosity minimal'
 
   - task: DotNetCoreCLI@2
     displayName: 'Dotnet build $(buildConfiguration)'

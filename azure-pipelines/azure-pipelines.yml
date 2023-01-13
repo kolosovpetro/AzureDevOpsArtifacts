@@ -19,6 +19,8 @@ variables:
     value: './AzureDevOpsArtifacts.Tests/AzureDevOpsArtifacts.Tests.csproj'
   - name: nugetProjectPath
     value: './AzureDevOpsArtifacts/AzureDevOpsArtifacts.csproj'
+  - name: solutionProjectPath
+    value: './AzureDevOpsArtifacts.sln'
 
 stages:
   - stage: 'Build_Test'
