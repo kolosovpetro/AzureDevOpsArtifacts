@@ -3,6 +3,7 @@
 Create, pack and publish nuget package to azure devops artifacts feed for further consumption.
 
 ## Steps
+
 - Create feed
 - Restore packages in solution
 - Add feed to `nuget.config`
@@ -11,4 +12,9 @@ Create, pack and publish nuget package to azure devops artifacts feed for furthe
 - To clear local nuget cache: `nuget locals -clear all`
 - Restore packages: `nuget restore` -- it will upload all you packages to the azure
   devops feed so that you can consume them in your projects, it is strange
--  Clear default nuget feed, now you can restore from your devops feed
+- Clear default nuget feed, now you can restore from your devops feed
+
+## Nuget feed service connection
+
+- Generate PAT with permissions: `package:read`, `package:write`, `package:manage`
+- Add service connection

@@ -12,7 +12,7 @@ steps:
       restoreSolution: '$(solutionProjectPath)'
       feedsToUse: 'config'
       nugetConfigPath: 'nuget.config'
-      externalFeedCredentials: 'osds_nuget'
+      externalFeedCredentials: 'NUGET_AUTH'
 
 #  - task: DotNetCoreCLI@2
 #    displayName: 'Dotnet Restore'
