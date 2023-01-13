@@ -78,10 +78,10 @@ steps:
     displayName: 'dotnet push'
     inputs:
       command: 'push'
+      arguments: '--skip-duplicate'
       packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
       nuGetFeedType: 'internal'
       publishVstsFeed: '$(nugetFeedId)'
-      arguments: '--skip-duplicate'
 
 #  - task: DotNetCoreCLI@2
 #    displayName: 'Dotnet Publish'
