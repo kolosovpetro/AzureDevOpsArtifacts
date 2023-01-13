@@ -74,14 +74,25 @@ steps:
       versionEnvVar: 'GitVersion.NuGetVersion'
       verbosityPack: 'Minimal'
 
-  - task: DotNetCoreCLI@2
-    displayName: 'dotnet push'
+#  - task: DotNetCoreCLI@2
+#    displayName: 'dotnet push'
+#    inputs:
+#      command: 'push'
+#      arguments: '--skip-duplicate'
+#      packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+#      nuGetFeedType: 'internal'
+#      publishVstsFeed: '$(nugetFeedId)'
+      
+  - task: NuGetAuthenticate@0
+    displayName: 'NuGet Authenticate'
+    
+  - task: NuGetCommand@2
     inputs:
       command: 'push'
-      arguments: '--skip-duplicate'
-      packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+      packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg'
       nuGetFeedType: 'internal'
       publishVstsFeed: '$(nugetFeedId)'
+      allowPackageConflicts: true
 
 #  - task: DotNetCoreCLI@2
 #    displayName: 'Dotnet Publish'
