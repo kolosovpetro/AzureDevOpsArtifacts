@@ -74,6 +74,8 @@ steps:
       versionEnvVar: 'GitVersion.NuGetVersion'
       verbosityPack: 'Minimal'
 
+#     !!! SKIP DUPLICATE FLAG DOES NOT WORK !!!
+
 #  - task: DotNetCoreCLI@2
 #    displayName: 'dotnet push'
 #    inputs:

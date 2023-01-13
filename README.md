@@ -13,6 +13,7 @@ Create, pack and publish nuget package to azure devops artifacts feed for furthe
 - Restore packages: `nuget restore` -- it will upload all you packages to the azure
   devops feed so that you can consume them in your projects, it is strange
 - Clear default nuget feed, now you can restore from your devops feed
+- Skip duplicates parameter does not worK: https://github.com/microsoft/azure-pipelines-tasks/issues/13591
 
 ## Nuget feed service connection
 
