@@ -21,6 +21,8 @@ variables:
     value: './AzureDevOpsArtifacts/AzureDevOpsArtifacts.csproj'
   - name: solutionProjectPath
     value: './AzureDevOpsArtifacts.sln'
+  - name: nugetFeedId
+    value: '04c81209-5ca9-4784-b02b-bdd6e2024216/d4626246-960c-4423-b417-81d62a12eebc'
 
 stages:
   - stage: 'Build_Test'

@@ -1,4 +1,20 @@
 steps:
+  - task: gitversion/setup@0
+    displayName: 'GitVersion Setup'
+    inputs:
+      versionSpec: '5.9.x'
+
+  - task: gitversion/execute@0
+    displayName: 'GitVersion Execute'
+    inputs:
+      updateAssemblyInfo: true
+
+  - bash: echo $Action$BuildVersion
+    displayName: 'Set Build Version'
+    env:
+      Action: '##vso[build.updatebuildnumber]'
+      BuildVersion: $(GitVersion.SemVer)
+      
   - task: UseDotNet@2
     displayName: 'Install .NET 6.x SDK'
     inputs:
@@ -23,11 +39,18 @@ steps:
 #      vstsFeed: '04c81209-5ca9-4784-b02b-bdd6e2024216/d4626246-960c-4423-b417-81d62a12eebc'
 #      includeNuGetOrg: false
 
+#  - task: DotNetCoreCLI@2
+#    displayName: 'Dotnet build $(buildConfiguration)'
+#    inputs:
+#      command: 'build'
+#      arguments: '--configuration $(buildConfiguration) --no-restore'
+      
   - task: DotNetCoreCLI@2
-    displayName: 'Dotnet build $(buildConfiguration)'
+    displayName: 'dotnet build'
     inputs:
-      command: 'build'
-      arguments: '--configuration $(buildConfiguration) --no-restore'
+      projects: '$(nugetProjectPath)'
+      arguments: '--configuration $(buildConfiguration) /p:Version=$(GitVersion.NuGetVersion) --no-restore'
+      versioningScheme: byBuildNumber
       
   - task: DotNetCoreCLI@2
     displayName: 'Run unit tests'
@@ -35,6 +58,27 @@ steps:
       command: 'test'
       projects: '$(testProjectPath)'
       arguments: '--no-restore --collect:"XPlat Code Coverage" --settings azure-pipelines/coverage.runsettings'
+      publishTestResults: false
+      
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet pack'
+    inputs:
+      command: 'pack'
+      packagesToPack: '$(nugetProjectPath)'
+      configuration: '$(buildConfiguration)'
+      nobuild: true
+      versioningScheme: 'byEnvVar'
+      versionEnvVar: 'GitVersion.NuGetVersion'
+      verbosityPack: 'Minimal'
+
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet push'
+    inputs:
+      command: 'push'
+      packagesToPush: '$(Build.ArtifactStagingDirectory)/*.nupkg'
+      nuGetFeedType: 'internal'
+      publishVstsFeed: '$(nugetFeedId)'
+      arguments: '--skip-duplicate'
 
 #  - task: DotNetCoreCLI@2
 #    displayName: 'Dotnet Publish'
